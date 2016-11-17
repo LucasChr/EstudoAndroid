@@ -1,4 +1,4 @@
-package com.projetos.lucaschr.projeto01.denuncia;
+package com.projetos.lucaschr.projeto01.principal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,8 +32,8 @@ public class PrincipalActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
                 fazerDenuncia();
             }
         });
