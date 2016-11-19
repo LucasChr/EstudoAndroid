@@ -3,7 +3,6 @@ package com.projetos.lucaschr.projeto01.principal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.projetos.lucaschr.projeto01.R;
-import com.projetos.lucaschr.projeto01.cadastra.FazerDenunciaActivity;
+import com.projetos.lucaschr.projeto01.denuncia.DenunciaCadActivity;
 
 public class PrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +33,7 @@ public class PrincipalActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
-                fazerDenuncia();
+            fazerDenuncia();
             }
         });
 
@@ -106,7 +105,7 @@ public class PrincipalActivity extends AppCompatActivity
     }
 
     public void fazerDenuncia(){
-        Intent it = new Intent(this, FazerDenunciaActivity.class);
+        Intent it = new Intent(this, DenunciaCadActivity.class);
         startActivity(it);
     }
 }

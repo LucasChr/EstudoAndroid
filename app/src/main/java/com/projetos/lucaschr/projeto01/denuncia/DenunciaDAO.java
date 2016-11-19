@@ -29,7 +29,7 @@ public class DenunciaDAO {
         values.put(Denuncia.FOTO, denuncia.getFoto());
         values.put(Denuncia.LATITUDE, denuncia.getLatitude());
         values.put(Denuncia.LONGITUDE, denuncia.getLongitude());
-        db.insert("denuncia", null, values);
+        db.insert(Denuncia.TABELA, null, values);
     }
 
     public void alterar(Denuncia denuncia) {
@@ -43,7 +43,7 @@ public class DenunciaDAO {
         String id = String.valueOf(denuncia.getId());
         String[] whereArgs = new String[]{id};
 
-        db.update("denuncia", values, "_id = ?", whereArgs);
+        db.update(Denuncia.TABELA, values, Denuncia.ID +" = ?", whereArgs);
     }
 
     public Denuncia buscar(String id) {
@@ -52,7 +52,7 @@ public class DenunciaDAO {
         String[] colunas = Denuncia.COLUNAS;
         String[] whereArgs = new String[]{id};
 
-        Cursor c = db.query(Denuncia.TABELA, colunas, "_id = ?", whereArgs, null, null, null);
+        Cursor c = db.query(Denuncia.TABELA, colunas,Denuncia.ID + " = ?", whereArgs, null, null, null);
 
         c.moveToFirst();
 
@@ -86,7 +86,7 @@ public class DenunciaDAO {
 
                 denuncias.add(denuncia);
 
-                Log.i("lista", "Denuncia");
+                Log.i("lista", denuncia.getDescricao());
             } while (c.moveToNext());
         }
         return denuncias;
@@ -95,7 +95,7 @@ public class DenunciaDAO {
 
     public void excluir(String id) {
         String[] whereArgs = new String[]{id};
-        db.delete(Denuncia.TABELA, "_id = ?", whereArgs);
+        db.delete(Denuncia.TABELA,Denuncia.ID + " = ?", whereArgs);
     }
 
 }
