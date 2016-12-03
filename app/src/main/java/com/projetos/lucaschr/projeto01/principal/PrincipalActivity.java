@@ -3,6 +3,9 @@ package com.projetos.lucaschr.projeto01.principal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,9 +18,13 @@ import android.view.MenuItem;
 
 import com.projetos.lucaschr.projeto01.R;
 import com.projetos.lucaschr.projeto01.denuncia.DenunciaCadActivity;
+import com.projetos.lucaschr.projeto01.denuncia.DenunciaDAO;
+import com.projetos.lucaschr.projeto01.denuncia.DenunciaListFragment;
 
 public class PrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    DenunciaDAO denunciaDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +40,8 @@ public class PrincipalActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 //        .setAction("Action", null).show();
-            fazerDenuncia();
+                Intent it = new Intent(PrincipalActivity.this, DenunciaCadActivity.class);
+                startActivityForResult(it, 1);
             }
         });
 
@@ -45,6 +53,11 @@ public class PrincipalActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        denunciaDAO = new DenunciaDAO(this);
+        denunciaDAO.listar();
+
+        setDisplay(R.id.nav_denuncia);
     }
 
     @Override
@@ -83,29 +96,54 @@ public class PrincipalActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+        //int id = item.getItemId();
+        setDisplay(item.getItemId());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void fazerDenuncia(){
-        Intent it = new Intent(this, DenunciaCadActivity.class);
-        startActivity(it);
+
+    //Fazer a chamada dos outros fragments
+    public void setDisplay(int pos) {
+        Fragment fragment;
+
+        switch (pos) {
+            case R.id.nav_denuncia: {
+                fragment = new DenunciaListFragment();
+                abrirFragment(fragment, "Denuncias");
+            }
+            case R.id.nav_configuracao: {
+
+            }
+            case R.id.nav_guia: {
+
+            }
+            case R.id.nav_sobre: {
+
+            }
+        }
+    }
+
+    public void abrirFragment(Fragment fragment, String title) {
+
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_body, fragment);
+            fragmentTransaction.commit();
+
+            getSupportActionBar().setTitle(title);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        setDisplay(R.id.nav_denuncia);
     }
 }

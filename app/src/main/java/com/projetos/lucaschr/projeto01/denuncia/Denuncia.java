@@ -16,11 +16,11 @@ public class Denuncia {
     public static final String ID = "_id";
     public  static final String CATEGORIA = "den_categoria";
     public static  final String DESCRICAO = "den_descricao";
-    public  static final String FOTO = "den_foto";
+    public  static final String FOTO = "den_img";
     public static final String LATITUDE = "den_latitude";
     public static final String LONGITUDE = "den_longitude";
 
-    public static final String TABELA = "denuncia";
+    public static final String TABELA = "cidadelimpa";
     public static final String[] COLUNAS = {ID,CATEGORIA,DESCRICAO,FOTO,LATITUDE,LONGITUDE};
 
 

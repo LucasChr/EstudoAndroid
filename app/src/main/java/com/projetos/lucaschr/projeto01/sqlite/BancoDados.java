@@ -9,14 +9,14 @@ import android.database.sqlite.SQLiteDatabase;
 public class BancoDados {
 
     private static final String NOME_BANCO = "cidadelimpa";
-    private static final int VERSAO_BANCO = 1;
+    private static final int VERSAO_BANCO = 4;
 
     //Script
-    private static final String[] SCRIPT_DATABASE_DELETE = new String[] {"DROP TABLE IF EXISTS denuncia;"};
+    private static final String[] SCRIPT_DATABASE_DELETE = new String[] {"DROP TABLE IF EXISTS cidadelimpa;"};
 
     //Tabela com id sequencial usa-se _id
     private static final String[] SCRIPT_DATABASE_CREATE = new String[]{
-            "create table denuncia(_id integer primary key, den_id text, den_categoria text, den_descricao text, den_latitude text, den_longitude text, den_img text);"
+            "create table cidadelimpa(_id integer primary key, den_id text, den_categoria text, den_descricao text, den_latitude text, den_longitude text, den_img text);"
     };
 
     private static SQLiteDatabase db;

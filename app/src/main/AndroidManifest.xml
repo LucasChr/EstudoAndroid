@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.projetos.lucaschr.projeto01">
 
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="your API key"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,9 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/AppTheme.NoActionBar"
-            android:name=".principal.PrincipalActivity" />
-        <activity android:name=".denuncia.DenunciaCadActivity"></activity>
+            android:name=".principal.PrincipalActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".denuncia.DenunciaCadActivity" />
+        <activity android:name=".denuncia.DenunciaActivity"></activity>
     </application>
 
 </manifest>
